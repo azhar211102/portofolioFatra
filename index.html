@@ -1,1 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatra Algheno Akbar | Legal Professional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fdfdfd;
+            --bg-secondary: #f8f9fa;
+            --accent-gold: #b8924a;
+            --text-dark: #1a1a1a;
+            --text-muted: #5e646a;
+            --border-light: #e9ecef;
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-gold); }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 10%;
+            gap: 50px;
+        }
+
+        .hero-text { flex: 1.2; }
+        .hero-image {
+            flex: 0.8;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 4px;
+            box-shadow: 30px 30px 0 var(--bg-secondary), 31px 31px 0 var(--accent-gold);
+            filter: grayscale(20%);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--bg-secondary);
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Section Styling --- */
+        .section { padding: 100px 10%; }
+        
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header .line {
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 0 auto;
+        }
+
+        /* --- Cards & Grid --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--accent-gold);
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h3 { margin-bottom: 0.5rem; font-size: 1.3rem; font-family: 'Playfair Display', serif; }
+        .card h4 { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; font-weight: 500; }
+        
+        .card-list { list-style: none; }
+        .card-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card-list li::before {
+            content: '▫';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--text-dark);
+            color: white;
+            border-color: var(--text-dark);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--bg-secondary);
+            padding: 80px 10% 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content h3 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 2rem; }
+        
+        .contact-box {
+            display: inline-flex;
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+
+        .contact-box a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .contact-box a:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 140px; }
+            .hero-image img { max-width: 300px; }
+            .hero p { margin: 0 auto 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .section { padding: 60px 5%; }
+            .grid { grid-template-columns: 1fr; }
+            .contact-box { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">F.A.A</a>
+        <div class="nav-links">
+            <a href="#about">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#leadership">Leadership</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <span class="badge">Legal & Taxation Specialist</span>
+            <h1>Fatra Algheno <br>Akbar</h1>
+            <p>Law graduate from <strong>Universitas Diponegoro</strong>[cite: 5]. Developing expertise in regulatory compliance and legal research applicable to corporate environments[cite: 7].</p>
+            <div class="skills-container" style="justify-content: flex-start; margin: 0;">
+                <span class="skill-tag">Brevet A & B Certified [cite: 9]</span>
+                <span class="skill-tag">Administrative Law [cite: 7]</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://raw.githubusercontent.com/azhar211102/portofolioFatra/4be0370e05da905da1521e287782b98c52651039/img/1770860023106.jpg" alt="Fatra Algheno Akbar Profile">
+        </div>
+    </header>
+
+    <section id="about" class="section reveal">
+        <div class="section-header">
+            <h2>Education</h2>
+            <div class="line"></div>
+        </div>
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <span class="card-date">Aug 2021 — Aug 2025 [cite: 6]</span>
+            <h3>Bachelor of Law</h3>
+            <h4>Universitas Diponegoro (UNDIP) — GPA 3.58/4.00 [cite: 4, 5]</h4>
+            <ul class="card-list">
+                <li>Specialized in Administrative and Civil Law with a focus on Taxation[cite: 7].</li>
+                <li>Leveraged Brevet A & B certifications to integrate taxation insights into legal courses[cite: 9].</li>
+                <li>Collaborated on 20+ academic projects with 100+ peers[cite: 8].</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience" class="section reveal" style="background: var(--bg-secondary);">
+        <div class="section-header">
+            <h2>Work Experience</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <span class="card-date">Dec 2025 — Present [cite: 13]</span>
+                <h3>Legal & Corporate Secretary Staff Intern</h3>
+                <h4>PT Merak Chemicals Indonesia [cite: 12]</h4>
+                <ul class="card-list">
+                    <li>Reviewed 20+ legal agreements to ensure regulatory compliance[cite: 14].</li>
+                    <li>Systemized 90% of corporate legal documents via an integrated filing system[cite: 15].</li>
+                    <li>Digitalized Agreement Database by reviewing 40+ contracts[cite: 15].</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-date">Jan 2024 — Feb 2024 [cite: 19]</span>
+                <h3>Legal Intern</h3>
+                <h4>TDA Law Firm [cite: 18]</h4>
+                <ul class="card-list">
+                    <li>Assisted in 10+ powers of attorney and 15+ legal claims[cite: 20].</li>
+                    <li>Attended 5 court hearings to support case documentation[cite: 21].</li>
+                    <li>Ensured document completeness prior to court proceedings[cite: 20].</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="section reveal">
+        <div class="section-header">
+            <h2>Leadership</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <span class="card-date">Feb 2024 — May 2025 [cite: 26]</span>
+                <h3>Vice President</h3>
+                <h4>Ikatan Mahasiswa Hukum Administrasi Negara, UNDIP [cite: 24]</h4>
+                <ul class="card-list">
+                    <li>Supervised four key divisions to ensure alignment of 30+ members[cite: 27].</li>
+                    <li>Led collaborations with external institutions for 10+ seminars[cite: 29].</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-date">Jan 2023 — Jul 2024 [cite: 32]</span>
+                <h3>Professional Development Officer</h3>
+                <h4>Himpunan Mahasiswa Islam FH, UNDIP [cite: 31]</h4>
+                <ul class="card-list">
+                    <li>Facilitated career mentoring programs for 50+ members[cite: 34].</li>
+                    <li>Identified 100+ scholarship opportunities for members[cite: 35].</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-date">Jan 2022 — Dec 2022 [cite: 46]</span>
+                <h3>Advocacy & Student Welfare</h3>
+                <h4>BEM FH, Universitas Diponegoro [cite: 43]</h4>
+                <ul class="card-list">
+                    <li>Represented the organization in an audience with Commission X of the DPR RI[cite: 49].</li>
+                    <li>Co-authored 3+ policy studies on higher education costs[cite: 47].</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" style="background: var(--bg-secondary);">
+        <div class="section-header">
+            <h2>Technical & Soft Skills</h2>
+            <div class="line"></div>
+        </div>
+        <div class="skills-container">
+            <span class="skill-tag">Legal Research [cite: 57]</span>
+            <span class="skill-tag">Policy Analysis [cite: 57]</span>
+            <span class="skill-tag">Taxation & Accounting [cite: 57]</span>
+            <span class="skill-tag">Project Management [cite: 57]</span>
+            <span class="skill-tag">Microsoft Office [cite: 58]</span>
+            <span class="skill-tag">Canva [cite: 58]</span>
+            <span class="skill-tag">Stakeholder Relations [cite: 59]</span>
+            <span class="skill-tag">Negotiation [cite: 59]</span>
+            <span class="skill-tag">Bahasa Indonesia (Native) [cite: 60]</span>
+            <span class="skill-tag">English (Professional) [cite: 60]</span>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h3>Let's Connect</h3>
+            <div class="contact-box">
+                <a href="mailto:fatraalgheno@gmail.com">fatraalgheno@gmail.com [cite: 2]</a>
+                <a href="tel:+6281289070648">(+62) 812-8907-0648 [cite: 2]</a>
+                <a href="#">Semarang, Indonesia [cite: 2]</a>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">© 2026 Fatra Algheno Akbar. Designed for Excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
